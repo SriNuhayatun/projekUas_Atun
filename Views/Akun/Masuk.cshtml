@@ -1,0 +1,58 @@
+﻿@model User;
+
+@{
+    Layout = "_LayoutAkun";
+}
+
+@{
+    if (!string.IsNullOrEmpty(ViewBag.pesan))
+    {
+        <script>
+                    alert("@ViewBag.pesan");
+        </script>
+    }
+
+}
+<h4>Selamat Datang Kembali!</h4>
+<h6 class="font-weight-light">Senang bertemu denganmu lagi!</h6>
+<form class="pt-3" asp-action="Masuk">
+    <div class="form-group">
+        <label for="exampleInputEmail">Username</label>
+        <div class="input-group">
+            <div class="input-group-prepend bg-transparent">
+                <span class="input-group-text bg-transparent border-right-0">
+                    <i class="mdi mdi-account-outline text-primary"></i>
+                </span>
+            </div>
+            <input asp-for="Username"  class="form-control form-control-lg border-left-0" id="exampleInputEmail" placeholder="Username">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword">Password</label>
+        <div class="input-group">
+            <div class="input-group-prepend bg-transparent">
+                <span class="input-group-text bg-transparent border-right-0">
+                    <i class="mdi mdi-lock-outline text-primary"></i>
+                </span>
+            </div>
+            <input asp-for="Password" type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Password">
+        </div>
+    </div>
+    <div class="my-3">
+        <button class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn">Log In</button>
+    </div>
+    <div class="mb-2 d-flex">
+        <button type="button" class="btn btn-facebook auth-form-btn flex-grow mr-1">
+            <i class="mdi mdi-facebook mr-2"></i>
+            Facebook
+        </button>
+        <button type="button" class="btn btn-google auth-form-btn flex-grow ml-1">
+            <i class="mdi mdi-google mr-2"></i>
+            Google
+        </button>
+    </div>
+    <div class="text-center mt-4 font-weight-light">
+       Belum Punya Akun? <a asp-action="Daftar" class="text-primary">Sign Up</a>
+    </div>
+</form>
+

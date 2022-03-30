@@ -1,0 +1,52 @@
+﻿@model  Paket
+@{
+    Layout = "_AdminLayout";
+}
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <div class="card-header">
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Id_Paket)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NamaPaket)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.LamaPeminjaman)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id_Paket)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NamaPaket)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LamaPeminjaman)
+                                </td>
+                                <td>
+                                    <a asp-action="Ubah" asp-route-id="@item.Id_Paket">Edit</a>
+                                    <a asp-action="Details" asp-route-id="@item.Id_Paket">Details</a>
+                                    <a asp-action="Hapus" asp-route-id="@item.Id_Paket" title="Keluar" style="color:red"
+                                       onclick="if (!confirm('Yakin Akan Menghapus Data Ini ? ')) { return false;}">Delete</a>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
