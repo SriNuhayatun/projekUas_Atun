@@ -25,4 +25,13 @@ namespace projekUas_Atun.Models
         public string ImageMobil { get; set; }
         
     }
+    public class MobilDashboard
+    {
+        public List<Mobil> mobill { get; set; }
+        public MobilDashboard()
+        {
+            mobill = new List<Mobil>();
+        }
+
+    }
 }

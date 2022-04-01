@@ -21,4 +21,12 @@ namespace projekUas_Atun.Models
         [Required]
         public string status { get; set; }
     }
+    public class SupirDashboard
+    {
+        public List<Supir> supirr { get; set; }
+        public SupirDashboard()
+        {
+            supirr = new List<Supir>();
+        }
+    }
 }

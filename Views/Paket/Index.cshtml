@@ -1,0 +1,18 @@
+﻿@model PaketDashboard
+@{
+    Layout = "_AdminLayout";
+}
+<div class="page-header">
+    <h1 class="page-title">Data Paket</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Data Paket</li>
+        </ol>
+    </nav>
+</div>
+<a class="nav-link" asp-action="CreatePaket">
+    <i class="mdi mdi-plus menu-icon"> </i>
+    <span class="menu-title">Buat Paket Baru</span>
+</a>
+@await Html.PartialAsync("Partial/ListPaket.cshtml")

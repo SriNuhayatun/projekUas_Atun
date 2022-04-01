@@ -1,0 +1,49 @@
+﻿@model Mobil
+
+@{
+    Layout = "_AdminLayout";
+}
+<div class="page-header">
+    <h1 class="page-title">Create Mobil</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Create Mobil</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <form asp-controller="Mobil" asp-action="CreateMobil" class="forms-sample">
+                <div class="form-group">
+                    <label asp-for="NamaMobil">Nama Mobil</label>
+                    <input asp-for="NamaMobil" type="text" class="form-control" id="exampleInputEmail3" placeholder="Nama Mobil" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Merk">Nama Mobil</label>
+                    <input asp-for="Merk" type="text" class="form-control" id="exampleInputEmail3" placeholder="Merk" />
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label asp-for="Status">Status</label>
+                        <input asp-for="Status" class="form-control" id="exampleInputMobile" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Harga">Harga</label>
+                    <input asp-for="Harga" type="text" class="form-control" id="exampleInputEmail3" placeholder="Harga" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageMobil" class="control-label"></label>
+
+                    <input name="Image" type="file" accept=".jpg,.png" class="form-control file-upload-info">
+                    <span asp-validation-for="ImageMobil" class="input-group-append"></span>
+                </div>
+                <input type="submit" class="btn btn-primary mr-2" value="Submit" />
+                <button type="reset" class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>

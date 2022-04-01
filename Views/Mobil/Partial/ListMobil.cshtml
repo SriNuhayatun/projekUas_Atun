@@ -1,4 +1,4 @@
-﻿@model BlogDashboard
+﻿@model MobilDashboard
 
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
@@ -9,37 +9,41 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>ID Member</th>
-                            <th>Nama</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Alamat</th>
+                            <th>ID Mobil</th>
+                            <th>Nama Mobil</th>
+                            <th>Merk</th>
+                            <th>Status</th>
+                            <th>Harga</th>
                             <th>Image</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.memberr)
+                        @foreach (var item in Model.mobill)
                         {
                             <tr>
 
                                 <td>
-                                    @item.Id_Member
+                                    @item.Id_mobil
                                 </td>
                                 <td>
-                                    @item.NamaMember
+                                    @item.NamaMobil
                                 </td>
                                 <td>
-                                    @item.JenisKelamin
+                                    @item.Merk
                                 </td>
                                 <td>
-                                    @item.Alamat
+                                    @item.Status
                                 </td>
                                 <td>
-                                    <img src="~/FileFoto/@item.Image" alt="Image" width="30"/>
+                                    @item.Harga
                                 </td>
                                 <td>
-                                    <a asp-action="Ubah" asp-route-id="@item.Id_Member">Edit</a>
-                                    <a asp-action="Details" asp-route-id="@item.Id_Member">Details</a>
-                                    <a asp-action="Hapus" asp-route-id="@item.Id_Member" title="Keluar" style="color:red"
+                                    <img src="~/FileFoto/@item.ImageMobil" alt="Image" width="30" />
+                                </td>
+                                <td>
+                                    <a asp-action="Ubah" asp-route-id="@item.Id_mobil">Edit</a>
+                                    <a asp-action="Details" asp-route-id="@item.Id_mobil">Details</a>
+                                    <a asp-action="Hapus" asp-route-id="@item.Id_mobil" title="Keluar" style="color:red"
                                        onclick="if (!confirm('Yakin Akan Menghapus Data Ini ? ')) { return false;}">Delete</a>
                                 </td>
                             </tr>
@@ -51,3 +55,4 @@
         </div>
     </div>
 </div>
+

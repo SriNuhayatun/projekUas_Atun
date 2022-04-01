@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using projekUas_Atun.Models;
@@ -10,13 +11,14 @@ using System.Threading.Tasks;
 
 namespace projekUas_Atun.Controllers
 {
+    [Authorize]
     public class MemberController : Controller
     {
         private readonly AppDbContext _context;
         private readonly IMemberServices _serv;
         public MemberController(AppDbContext context, IMemberServices serv)
         {
-            _context = context;//_Context dimasukan konstruktor agar lebih ringkas
+            _context = context;
             _serv = serv;
         }
         public IActionResult Index()
@@ -32,7 +34,7 @@ namespace projekUas_Atun.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateMember(Member Parameter, IFormFile Image)//mnerima halaman yg akan diisi(inputan/proses)
+        public async Task<IActionResult> CreateMember(Member Parameter, IFormFile Fotonya)//mnerima halaman yg akan diisi(inputan/proses)
         {
             string[] Id = _context.Tb_Member.Select(x => x.Id_Member).ToArray();
 
@@ -50,7 +52,7 @@ namespace projekUas_Atun.Controllers
 
             if (ModelState.IsValid)
             {
-                await _serv.BuatMember(Parameter, Image);
+                await _serv.BuatMember(Parameter, Fotonya);
 
                 return RedirectToAction("Index");
             }
@@ -70,6 +72,7 @@ namespace projekUas_Atun.Controllers
         //}
         public async Task<IActionResult> Ubah(string id)
         {
+
             var cari = await _serv.TampilMemberById(id);
 
             if (cari == null)

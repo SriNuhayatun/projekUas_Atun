@@ -18,4 +18,13 @@ namespace projekUas_Atun.Models
         [DisplayName("Lama Rental")]
         public string LamaPeminjaman { get; set; }
     }
+    public class PaketDashboard
+    {
+        public List<Paket> pakett { get; set; }
+        public PaketDashboard()
+        {
+            pakett = new List<Paket>();
+        }
+
+    }
 }
