@@ -1,0 +1,33 @@
+﻿@model Supir
+
+@{
+    Layout = "_AdminLayout";
+}
+<div class="page-header">
+    <h1 class="page-title">Edit Supir</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Edit Supir</li>
+        </ol>
+    </nav>
+</div>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <form asp-controller="Supir" asp-action="Ubah" class="forms-sample">
+                <input type="hidden" asp-for="Id_Supir" class="form-control" id="exampleInputUsername1" />
+                <label>Nama Supir</label>
+                <input asp-for="NamaSupir" type="text" class="form-control" id="exampleInputEmail3" />
+                <label>Alamat</label>
+                <input asp-for="Alamat" type="text" class="form-control" id="exampleInputEmail3" />
+                <label>Harga Perhari</label>
+                <input asp-for="HargaPerhari" class="form-control" id="exampleInputMobile" />
+                <label>status</label>
+                <input asp-for="status" type="text" class="form-control" id="exampleInputEmail3" />
+                <input type="submit" class="btn btn-primary mr-2" value="Submit" />
+            </form>
+        </div>
+    </div>
+</div>
+

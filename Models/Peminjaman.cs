@@ -9,7 +9,6 @@ namespace projekUas_Atun.Models
 {
     public class Peminjaman
     {
-        [Key]
         public string Id_Peminjaman { get; set; }
         public string Id_Member { get; set; }
         [Required]

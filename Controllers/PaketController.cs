@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using projekUas_Atun.Models;
+using projekUas_Atun.Views.Services.PaketService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +14,12 @@ namespace projekUas_Atun.Controllers
     public class PaketController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IPaketService _serv;
 
-        public PaketController(AppDbContext context)
+        public PaketController(AppDbContext context, IPaketService s)
         {
             _context = context;
+            _serv = s;
         }
         public IActionResult Index()
         {
@@ -52,6 +56,61 @@ namespace projekUas_Atun.Controllers
                 return RedirectToAction("Index");
             }
             return View(Parameter);
+        }
+        public async Task<IActionResult> Ubah(string id)
+        {
+            var cari = await _serv.TampilPaketById(id);
+
+            if (cari == null)
+            {
+                return NotFound();
+            }
+
+            return View(cari);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Ubah(Paket data)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _serv.UpdatePaketAsync(data);
+                }
+                catch
+                {
+                    return NotFound();
+                }
+
+                return RedirectToAction("Index", "Paket");
+            }
+
+            return View(data);
+        }
+        public IActionResult Details(string id)
+        {
+
+            var detail = new List<Paket>();
+            var det = _context.Tb_paket.Where(x => x.Id_Paket == id).ToList();
+            if (det == null)
+            {
+                return NotFound();
+            }
+            ViewBag.detail = det;
+            return View();
+        }
+
+        public async Task<IActionResult> Hapus(string id)
+        {
+            var cari = _context.Tb_paket.Where(x => x.Id_Paket == id).FirstOrDefault();
+            if (cari == null)
+            {
+                return NotFound();
+            }
+            _context.Tb_paket.Remove(cari);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
     }
 }

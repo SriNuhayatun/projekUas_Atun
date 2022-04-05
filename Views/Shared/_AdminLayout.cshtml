@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using projekUas_Atun.Helper
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -24,19 +26,16 @@
                 <li class="nav-item nav-profile">
                     <a href="#" class="nav-link">
                         <div class="nav-profile-image">
-                            <img src="~/assets/images/faces/face1.jpg" alt="profile" />
+                            <img src="~/assets/images/faces/adminnn.jpg" alt="profile" />
                             <span class="login-status online"></span>
-                            <!--change to offline or busy as needed-->
                         </div>
                         <div class="nav-profile-text d-flex flex-column pr-3">
-                            <span class="font-weight-medium mb-2">Henry Klein</span>
-                            <span class="font-weight-normal">$8,753.00</span>
+                            <span class="font-weight-medium mb-2">@User.GetUsername()</span>
                         </div>
-                        <span class="badge badge-danger text-white ml-3 rounded">3</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">
                         <i class="mdi mdi-home menu-icon"></i>
                         <span class="menu-title">Home</span>
                     </a>
@@ -66,21 +65,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                        <i class="mdi mdi-account-circle menu-icon"></i>
-                        <span class="menu-title">Profil</span>
-                        <i class="menu-arrow"></i>
+                    <a class="nav-link" asp-controller="Paket" asp-action="Index">
+                        <i class="mdi mdi-clipboard-text menu-icon"> </i>
+                        <span class="menu-title">Transaksi</span>
                     </a>
-                    <div class="collapse" id="ui-basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Akun" asp-action="Masuk">Sign In</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Akun" asp-action="Daftar">Sign Up</a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
             </ul>
         </nav>
@@ -123,16 +111,30 @@
                     <ul class="navbar-nav navbar-nav-right ml-lg-auto">
                         <li class="nav-item nav-profile dropdown border-0">
                             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
-                                <img class="nav-profile-img mr-2" alt="" src="assets/images/faces/face1.jpg" />
-                                <span class="profile-name">Henry Klein</span>
+                                <img class="nav-profile-img mr-2" alt="" src="assets/images/faces/adminnn.jpg" />
+                                <span class="profile-name">@User.GetUsername()</span>
                             </a>
                             <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="mdi mdi-logout mr-2 text-primary"></i> Signout
-                                </a>
+                                @{
+                                    string cek = User.GetUsername();
+                                    if (cek != "")
+                                    {
+                                        <a class="dropdown-item" asp-controller="Akun" asp-action="Logout">
+                                            Sign Out
+                                        </a>
+
+                                    }
+                                    else
+                                    {
+                                        <a class="dropdown-item" asp-controller="Akun" asp-action="Masuk">
+                                            Login
+                                        </a>
+                                        <a class="dropdown-item" asp-controller="Akun" asp-action="Daftar">
+                                             Sign In
+                                        </a>
+                                    }
+
+                                }
                             </div>
                         </li>
                     </ul>

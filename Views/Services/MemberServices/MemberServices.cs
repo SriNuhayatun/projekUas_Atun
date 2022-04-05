@@ -20,12 +20,12 @@ namespace projekUas_Atun.Views.Services.MemberServices
 
         }
 
-        public async Task<bool> BuatMember(Member datanya, IFormFile Fotonya)
+        public  Task<bool> BuatMember(Member datanya, IFormFile Fotonya)
         {
 
-            datanya.Image = await _file.SimpanFile(Fotonya);
+            datanya.Image =  _file.SimpanFile(Fotonya).Result;
 
-            return await _memRepo.BuatMemberAsync(datanya);
+            return  _memRepo.BuatMemberAsync(datanya);
         }
 
         public async Task<bool> HapusMember(string id)

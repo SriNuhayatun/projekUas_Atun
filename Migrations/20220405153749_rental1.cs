@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace projekUas_Atun.Migrations
 {
-    public partial class rental : Migration
+    public partial class rental1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +15,7 @@ namespace projekUas_Atun.Migrations
                     NamaMember = table.Column<string>(type: "text", nullable: false),
                     JenisKelamin = table.Column<string>(type: "text", nullable: false),
                     Alamat = table.Column<string>(type: "text", nullable: false),
-                    Image = table.Column<string>(type: "text", nullable: false)
+                    Image = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -30,7 +31,7 @@ namespace projekUas_Atun.Migrations
                     Merk = table.Column<string>(type: "text", nullable: false),
                     Status = table.Column<string>(type: "text", nullable: false),
                     Harga = table.Column<int>(type: "int", nullable: false),
-                    ImageMobil = table.Column<string>(type: "text", nullable: false)
+                    ImageMobil = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,6 +79,29 @@ namespace projekUas_Atun.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tb_Peminjaman",
+                columns: table => new
+                {
+                    Id_Peminjaman = table.Column<string>(type: "varchar(767)", nullable: false),
+                    Tgl_Pinjam = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Tgl_Kembali = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Total = table.Column<int>(type: "int", nullable: false),
+                    Denda = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<string>(type: "text", nullable: true),
+                    Id_Member = table.Column<string>(type: "varchar(767)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tb_Peminjaman", x => x.Id_Peminjaman);
+                    table.ForeignKey(
+                        name: "FK_Tb_Peminjaman_Tb_Member_Id_Member",
+                        column: x => x.Id_Member,
+                        principalTable: "Tb_Member",
+                        principalColumn: "Id_Member",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tb_User",
                 columns: table => new
                 {
@@ -97,6 +121,58 @@ namespace projekUas_Atun.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Tb_DetailPeminjaman",
+                columns: table => new
+                {
+                    Id_DetailPeminjaman = table.Column<string>(type: "varchar(767)", nullable: false),
+                    Id_Peminjaman = table.Column<string>(type: "varchar(767)", nullable: true),
+                    Id_mobil = table.Column<string>(type: "varchar(767)", nullable: true),
+                    Id_Supir = table.Column<string>(type: "varchar(767)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tb_DetailPeminjaman", x => x.Id_DetailPeminjaman);
+                    table.ForeignKey(
+                        name: "FK_Tb_DetailPeminjaman_Tb_Mobil_Id_mobil",
+                        column: x => x.Id_mobil,
+                        principalTable: "Tb_Mobil",
+                        principalColumn: "Id_mobil",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Tb_DetailPeminjaman_Tb_Peminjaman_Id_Peminjaman",
+                        column: x => x.Id_Peminjaman,
+                        principalTable: "Tb_Peminjaman",
+                        principalColumn: "Id_Peminjaman",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Tb_DetailPeminjaman_Tb_Supir_Id_Supir",
+                        column: x => x.Id_Supir,
+                        principalTable: "Tb_Supir",
+                        principalColumn: "Id_Supir",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tb_DetailPeminjaman_Id_mobil",
+                table: "Tb_DetailPeminjaman",
+                column: "Id_mobil");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tb_DetailPeminjaman_Id_Peminjaman",
+                table: "Tb_DetailPeminjaman",
+                column: "Id_Peminjaman");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tb_DetailPeminjaman_Id_Supir",
+                table: "Tb_DetailPeminjaman",
+                column: "Id_Supir");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tb_Peminjaman_Id_Member",
+                table: "Tb_Peminjaman",
+                column: "Id_Member");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Tb_User_RolesId",
                 table: "Tb_User",
@@ -106,22 +182,28 @@ namespace projekUas_Atun.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tb_Member");
-
-            migrationBuilder.DropTable(
-                name: "Tb_Mobil");
+                name: "Tb_DetailPeminjaman");
 
             migrationBuilder.DropTable(
                 name: "Tb_paket");
 
             migrationBuilder.DropTable(
-                name: "Tb_Supir");
-
-            migrationBuilder.DropTable(
                 name: "Tb_User");
 
             migrationBuilder.DropTable(
+                name: "Tb_Mobil");
+
+            migrationBuilder.DropTable(
+                name: "Tb_Peminjaman");
+
+            migrationBuilder.DropTable(
+                name: "Tb_Supir");
+
+            migrationBuilder.DropTable(
                 name: "Tb_Roles");
+
+            migrationBuilder.DropTable(
+                name: "Tb_Member");
         }
     }
 }

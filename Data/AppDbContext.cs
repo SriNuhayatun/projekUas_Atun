@@ -19,8 +19,8 @@ namespace projekUas_Atun.Models
         public virtual DbSet<Mobil> Tb_Mobil { get; set; }
         public virtual DbSet<Supir> Tb_Supir { get; set; }
         public virtual DbSet<Paket> Tb_paket { get; set; }
-        //public virtual DbSet<Db_Peminjaman> Tb_Peminjaman { get; set; }
-        //public virtual DbSet<Db_DetailPeminjaman> Tb_DetailPeminjaman { get; set; }
-        
+        public virtual DbSet<Db_Peminjaman> Tb_Peminjaman { get; set; }
+        public virtual DbSet<Db_DetailPeminjaman> Tb_DetailPeminjaman { get; set; }
+
     }
 }

@@ -20,7 +20,6 @@ namespace projekUas_Atun.Models
         public string Status { get; set; }
         [Required]
         public int Harga { get; set; }
-        [Required]
         [DisplayName("Foto Mobil")]
         public string ImageMobil { get; set; }
         

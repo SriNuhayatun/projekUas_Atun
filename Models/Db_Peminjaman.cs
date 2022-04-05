@@ -10,6 +10,7 @@ namespace projekUas_Atun.Models
 {
     public class Db_Peminjaman
     {
+        [Key]
         public string Id_Peminjaman { get; set; }
         public DateTime Tgl_Pinjam { get; set; }
         public DateTime Tgl_Kembali { get; set; }
@@ -17,6 +18,6 @@ namespace projekUas_Atun.Models
         public int Denda { get; set; }
         public string Status { get; set; }
         [ForeignKey("Id_Member")]
-        public Member Id_Member { get; set; }
+        public Member IdMember { get; set; }
     }
 }

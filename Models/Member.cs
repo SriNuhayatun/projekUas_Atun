@@ -20,7 +20,6 @@ namespace projekUas_Atun.Models
         [Required]
         [DisplayName("Alamat")]
         public string Alamat { get; set; }
-        [Required]
         [DisplayName("Foto Diri")]
         public string Image { get; set; }      
     }

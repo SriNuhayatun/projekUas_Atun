@@ -34,42 +34,32 @@ namespace projekUas_Atun.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateMember(Member Parameter, IFormFile Fotonya)//mnerima halaman yg akan diisi(inputan/proses)
+        public IActionResult CreateMember(Member Parameter, IFormFile Image)
         {
-            string[] Id = _context.Tb_Member.Select(x => x.Id_Member).ToArray();
-
-            int temp;
-            foreach (var item in Id)
-            {
-                temp = Int32.Parse(item.Split("-")[1]);
-                Parameter.Id_Member = "M00-" + (temp + 1);
-            }
-
-            if (Parameter.Id_Member == null)
-            {
-                Parameter.Id_Member = "M00-1";
-            }
-
             if (ModelState.IsValid)
             {
-                await _serv.BuatMember(Parameter, Fotonya);
+                string[] Id = _context.Tb_Member.Select(x => x.Id_Member).ToArray();
+
+                int temp;
+                foreach (var item in Id)
+                {
+                    temp = Int32.Parse(item.Split("-")[1]);
+                    Parameter.Id_Member = "M00-" + (temp + 1);
+                }
+
+                if (Parameter.Id_Member == null)
+                {
+                    Parameter.Id_Member = "M00-1";
+                }
+
+
+                _serv.BuatMember(Parameter, Image);
 
                 return RedirectToAction("Index");
             }
             return View(Parameter);
         }
-        //public IActionResult Details(int id)
-        //{
-
-        //    var detail = new List<Member>();
-        //    var det = _context.Tb_Member.Where(x => x.Id_Member == id).ToList();
-        //    if (det == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    ViewBag.detail = det;
-        //    return View();
-        //}
+        
         public async Task<IActionResult> Ubah(string id)
         {
 
@@ -96,12 +86,23 @@ namespace projekUas_Atun.Controllers
                     return NotFound();
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Member");
             }
 
             return View(data);
         }
+        public IActionResult Details(string id)
+        {
 
+            var detail = new List<Member>();
+            var det = _context.Tb_Member.Where(x => x.Id_Member == id).ToList();
+            if (det == null)
+            {
+                return NotFound();
+            }
+            ViewBag.detail = det;
+            return View();
+        }
         public async Task<IActionResult> Hapus(string id)
         {
             var cari = _context.Tb_Member.Where(x => x.Id_Member == id).FirstOrDefault();
@@ -114,5 +115,6 @@ namespace projekUas_Atun.Controllers
 
             return RedirectToAction("Index");
         }
+        
     }
 }

@@ -8,6 +8,9 @@ using Microsoft.Extensions.Hosting;
 using projekUas_Atun.Models;
 using projekUas_Atun.Views.Repository;
 using projekUas_Atun.Views.Services.MemberServices;
+using projekUas_Atun.Views.Services.MobilServices;
+using projekUas_Atun.Views.Services.PaketService;
+using projekUas_Atun.Views.Services.SupirServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,10 +44,18 @@ namespace projekUas_Atun
             services.AddControllersWithViews();
 
             services.AddScoped<IMemberRepository, MemberRepository>();
-
             services.AddScoped<IMemberServices, MemberServices>();
-
             services.AddTransient<FileService>();
+
+            services.AddScoped<IMobilRepository, MobilRepository>();
+            services.AddScoped<IMobilServices, MobilServices>();
+            services.AddTransient<FileServiceMobil>();
+
+            services.AddScoped<IPaketRepository, PaketRepository>();
+            services.AddScoped<IPaketService, PaketService>();
+
+            services.AddScoped<ISupirRepository, SupirRepository>();
+            services.AddScoped<ISupirServices, SupirSevices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
