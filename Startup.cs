@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using projekUas_Atun.Models;
 using projekUas_Atun.Views.Repository;
+using projekUas_Atun.Views.Services;
 using projekUas_Atun.Views.Services.MemberServices;
 using projekUas_Atun.Views.Services.MobilServices;
 using projekUas_Atun.Views.Services.PaketService;
@@ -40,6 +41,8 @@ namespace projekUas_Atun
                         options.LoginPath = "/Akun/Masuk";
                     }
             );
+            services.AddTransient<EmailService>();
+            services.Configure<Email>(Configuration.GetSection("AturEmail"));
 
             services.AddControllersWithViews();
 
@@ -56,6 +59,8 @@ namespace projekUas_Atun
 
             services.AddScoped<ISupirRepository, SupirRepository>();
             services.AddScoped<ISupirServices, SupirSevices>();
+
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,7 +76,7 @@ namespace projekUas_Atun
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -82,6 +87,14 @@ namespace projekUas_Atun
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "AreaAdmin",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(
+                    name: "AreaUser",
+                    areaName: "User",
+                    pattern: "User/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

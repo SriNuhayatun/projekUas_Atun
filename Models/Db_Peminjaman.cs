@@ -12,11 +12,15 @@ namespace projekUas_Atun.Models
     {
         [Key]
         public string Id_Peminjaman { get; set; }
+        public string Id_Member { get; set; }
+        public string NamaMember { get; set; }
+        public string Image { get; set; }
+        public string NamaPaket { get; set; }
+        public string NamaMobil { get; set; }
+        public string NamaSupir { get; set; }
         public DateTime Tgl_Pinjam { get; set; }
         public DateTime Tgl_Kembali { get; set; }
-        public int Total { get; set; }
-        public int Denda { get; set; }
-        public string Status { get; set; }
+
         [ForeignKey("Id_Member")]
         public Member IdMember { get; set; }
     }

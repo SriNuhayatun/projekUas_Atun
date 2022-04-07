@@ -1,0 +1,36 @@
+﻿@model Mobil
+
+@{
+    Layout = "_AdminLayout";
+}
+<div class="page-header">
+    <h1 class="page-title">Edit Mobil</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Edit Mobil</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            @*enctype="multipart/form-data"*@
+            <form asp-controller="Mobil" asp-action="Ubah" class="forms-sample">
+                <input type="hidden" asp-for="Id_mobil" />
+                <label>Nama Mobil</label>
+                <input asp-for="NamaMobil" type="text" class="form-control" id="exampleInputEmail3" />
+                <label>Nama Mobil</label>
+                <input asp-for="Merk" type="text" class="form-control" id="exampleInputEmail3" />
+                <label>Status</label>
+                <input asp-for="Status" class="form-control" id="exampleInputMobile" />
+                <label>Harga</label>
+                <input asp-for="Harga" type="text" class="form-control" id="exampleInputEmail3" />
+                <label>Foto</label>
+                <input asp-for="ImageMobil" class="form-control file-upload-info">
+                <input type="submit" class="btn btn-primary mr-2" value="Submit" />
+            </form>
+        </div>
+    </div>
+</div>

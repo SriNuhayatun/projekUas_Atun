@@ -1,0 +1,34 @@
+﻿@model Paket;
+
+@{
+    Layout = "_AdminLayout";
+}
+<div class="page-header">
+    <h1 class="page-title">Data Paket</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Data Paket</li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample" asp-controller="Paket" asp-action="CreatePaket">
+                    <div class="form-group">
+                        <label asp-for="NamaPaket">Nama Paket</label>
+                        <input asp-for="NamaPaket" type="text" class="form-control" id="exampleInputUsername1" placeholder="Nama Paket" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LamaPeminjaman">Lama Peminjaman</label>
+                        <input asp-for="LamaPeminjaman" class="form-control" id="exampleInputEmail1" placeholder="Lama Peminjaman" />
+                    </div>
+                    <input type="submit" class="btn btn-primary mr-2" value="Submit" />
+                    <button type="reset" class="btn btn-light">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,12 +14,18 @@ namespace projekUas_Atun.Models
         public string Id_Peminjaman { get; set; }
         public string Id_mobil { get; set; }
         public string Id_Supir { get; set; }
+        public string Id_Member { get; set; }
+        public string NamaMember { get; set; }
+        public string Image { get; set; }
+        public string NamaPaket { get; set; }
+        public string NamaMobil { get; set; }
+        public string NamaSupir { get; set; }
+        public DateTime Tgl_Pinjam { get; set; }
+        public DateTime Tgl_Kembali { get; set; }
+        public string denda { get; set; }
+        public string total { get; set; }
 
         [ForeignKey(" Id_Peminjaman")]
         public Db_Peminjaman IdPeminjaman { get; set; }
-        [ForeignKey("Id_mobil")]
-        public Mobil Idmobil { get; set; }
-        [ForeignKey("Id_Supir")]
-        public Supir IdSupir { get; set; }
     }
 }

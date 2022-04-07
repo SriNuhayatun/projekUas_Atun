@@ -1,0 +1,49 @@
+﻿@model Peminjaman;
+
+@{
+    Layout = "_AdminLayout";
+}
+<div class="page-header">
+    <h1 class="page-title">Create Transaksi</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item">Data Transaksi</li>
+            <li class="breadcrumb-item active" aria-current="page">Create Transaksi</li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample" asp-controller="Peminjaman" asp-action="CreatePeminjaman">
+
+                    <div class="form-group">
+                        <label asp-for="NamaPaket">Nama Paket</label>
+                        <input asp-for="NamaPaket" class="form-control" id="exampleInputEmail1" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NamaSupir">Nama Supir</label>
+                        <input asp-for="NamaSupir" class="form-control" id="exampleInputEmail1" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NamaMobil">Nama Mobil</label>
+                        <input asp-for="NamaMobil" class="form-control" id="exampleInputEmail1" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Tgl_Pinjam">Tanggal Peminjaman</label>
+                        <input asp-for="Tgl_Pinjam" class="form-control" id="exampleInputEmail1" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Tgl_Kembali">Tanggal Pengembalian</label>
+                        <input asp-for="Tgl_Kembali" class="form-control" id="exampleInputEmail1" />
+                    </div>
+                    <input type="submit" class="btn btn-primary mr-2" value="Submit" />
+                    <button type="reset" class="btn btn-light">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

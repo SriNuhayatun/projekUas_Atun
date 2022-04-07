@@ -9,8 +9,8 @@ using projekUas_Atun.Models;
 namespace projekUas_Atun.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220405153749_rental1")]
-    partial class rental1
+    [Migration("20220406085625_rental")]
+    partial class rental
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,22 +24,48 @@ namespace projekUas_Atun.Migrations
                     b.Property<string>("Id_DetailPeminjaman")
                         .HasColumnType("varchar(767)");
 
+                    b.Property<string>("Id_Member")
+                        .HasColumnType("text");
+
                     b.Property<string>("Id_Peminjaman")
                         .HasColumnType("varchar(767)");
 
                     b.Property<string>("Id_Supir")
-                        .HasColumnType("varchar(767)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Id_mobil")
-                        .HasColumnType("varchar(767)");
+                        .HasColumnType("text");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NamaMember")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NamaMobil")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NamaPaket")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NamaSupir")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Tgl_Kembali")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("Tgl_Pinjam")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("denda")
+                        .HasColumnType("text");
+
+                    b.Property<string>("total")
+                        .HasColumnType("text");
 
                     b.HasKey("Id_DetailPeminjaman");
 
                     b.HasIndex("Id_Peminjaman");
-
-                    b.HasIndex("Id_Supir");
-
-                    b.HasIndex("Id_mobil");
 
                     b.ToTable("Tb_DetailPeminjaman");
                 });
@@ -49,13 +75,22 @@ namespace projekUas_Atun.Migrations
                     b.Property<string>("Id_Peminjaman")
                         .HasColumnType("varchar(767)");
 
-                    b.Property<int>("Denda")
-                        .HasColumnType("int");
-
                     b.Property<string>("Id_Member")
                         .HasColumnType("varchar(767)");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("Image")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NamaMember")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NamaMobil")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NamaPaket")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NamaSupir")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("Tgl_Kembali")
@@ -63,9 +98,6 @@ namespace projekUas_Atun.Migrations
 
                     b.Property<DateTime>("Tgl_Pinjam")
                         .HasColumnType("datetime");
-
-                    b.Property<int>("Total")
-                        .HasColumnType("int");
 
                     b.HasKey("Id_Peminjaman");
 
@@ -210,19 +242,7 @@ namespace projekUas_Atun.Migrations
                         .WithMany()
                         .HasForeignKey("Id_Peminjaman");
 
-                    b.HasOne("projekUas_Atun.Models.Supir", "IdSupir")
-                        .WithMany()
-                        .HasForeignKey("Id_Supir");
-
-                    b.HasOne("projekUas_Atun.Models.Mobil", "Idmobil")
-                        .WithMany()
-                        .HasForeignKey("Id_mobil");
-
-                    b.Navigation("Idmobil");
-
                     b.Navigation("IdPeminjaman");
-
-                    b.Navigation("IdSupir");
                 });
 
             modelBuilder.Entity("projekUas_Atun.Models.Db_Peminjaman", b =>

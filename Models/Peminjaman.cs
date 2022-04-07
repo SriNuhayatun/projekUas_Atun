@@ -11,17 +11,26 @@ namespace projekUas_Atun.Models
     {
         public string Id_Peminjaman { get; set; }
         public string Id_Member { get; set; }
+        public string NamaMember { get; set; }
+        public string Image { get; set; }
+        public string NamaPaket { get; set; }
+        public string NamaMobil { get; set; }
+        public string NamaSupir { get; set; }
         [Required]
         [DisplayName("Tanggal Peminjaman")]
         public DateTime Tgl_Pinjam { get; set; }
         [Required]
         [DisplayName("Tanggal Kembali")]
         public DateTime Tgl_Kembali { get; set; }
-        [Required]
-        public int Total { get; set; }
-        [Required]
-        public int Denda { get; set; }
-        [Required]
-        public string Status { get; set; }
+    }
+    public class PinjamDashboard
+    {
+        public List<Peminjaman> pinjamm { get; set; }
+  
+        public PinjamDashboard()
+        {
+            pinjamm = new List<Peminjaman>();
+        }
+
     }
 }

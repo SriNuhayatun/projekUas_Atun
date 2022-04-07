@@ -1,0 +1,52 @@
+﻿@model Member;
+
+@{
+    Layout = "_AdminLayout";
+}
+<div class="page-header">
+    <h1 class="page-title">Create Member</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Create Member</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <form asp-controller="Member" asp-action="CreateMember" class="forms-sample" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="NamaMember">Nama</label>
+                    <input asp-for="NamaMember" type="text" class="form-control" id="exampleInputEmail3" placeholder="Nama Member" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="JenisKelamin">Jenis Kelamin</label>
+                    <select asp-for="JenisKelamin" class="form-control" id="exampleSelectGender">
+                        <option>Laki-Laki</option>
+                        <option>Perempuan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label asp-for="Alamat">Alamat</label>
+                        <input asp-for="Alamat" class="form-control" id="exampleInputMobile" placeholder="Alamat" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Image" class="control-label"></label>
+                    <input name="Image" type="file" accept=".jpg,.png" class="form-control file-upload-info">
+                    <span asp-validation-for="Image" class="input-group-append"></span>
+                </div>
+                <input type="submit" class="btn btn-primary mr-2" value="Submit" />
+                <button type="reset" class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+@*@section Scripts{
+        @{
+            await Html.RenderPartialAsync("_validationScriptsPartial");
+        }
+    }*@

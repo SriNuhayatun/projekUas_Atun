@@ -5,7 +5,7 @@
 }
 <h2>Daftar</h2>
 <h6 class="font-weight-light">Bergabunglah dengan kami </h6>
-<form class="pt-3"  asp-action="Daftar">
+<form class="pt-3" asp-action="Daftar">
     <div class="form-group">
         <label>Username</label>
         <div class="input-group">
@@ -39,6 +39,17 @@
             <input asp-for="Password" type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Password">
         </div>
     </div>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend bg-transparent">
+                <span class="input-group-text bg-transparent border-right-0">
+                    @*<i class="mdi mdi-lock-outline text-primary"></i>*@
+                </span>
+            </div>
+            <input type="text" name="otp" id="otp" class="form-control form-control-lg border-left-0" placeholder="Masukan OTP" required />
+            <button type="button" id="email-btn" >Kirim E-Mail</button>
+        </div>
+    </div>
     <div class="mb-4">
     </div>
     <div class="mt-3">
@@ -48,3 +59,52 @@
         Sudah Punya Akun? <a asp-action="Masuk" class="text-primary">Sign In</a>
     </div>
 </form>
+@section Scripts{
+    <script>
+
+        let ambilNilai = () => {
+            // #Email artinya id pada <input asp-for="Email"
+            return $("#Email").val();
+        }
+
+        $(document).ready(function () {
+            $("#email-btn").click(function (e) {
+
+                // alert
+                swal({
+                    title: "Mohon Tunggu",
+                    text: "Sedang mengirim email",
+                    icon: "info",
+                    button: "Baik",
+                });
+                $.post("/Akun/KirimEmailOTP",
+                    {
+                        emailTujuan: ambilNilai()
+                    },
+                    function (returnya) {
+                        swal({
+                            title: returnya.result == true ? "Sukses" : "Gagal",
+                            text: returnya.message,
+                            icon: returnya.result == true ? "success" : "error",
+                            button: "Baik",
+                            closeOnClickOutside: false,
+                        });
+                    });
+            })
+
+            $('#form-input').on('keyup', function () {
+                let lengkap = $(".wajib")
+                    .filter(
+                        function () {
+                            return $.trim($(this).val()).length == 0
+                        })
+                    .length == 0
+
+                let otpTerisi = $("#otp").val().length > 0
+
+                $('#email-btn').attr('disabled', lengkap ? false : true)
+                $('#btn-submit').attr('disabled', lengkap && otpTerisi ? false : true)
+            })
+        })
+    </script>
+}
