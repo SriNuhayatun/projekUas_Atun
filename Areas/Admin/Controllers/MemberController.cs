@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using projekUas_Atun.Models;
-using projekUas_Atun.Views.Services.MemberServices;
+using projekUas_Atun.Services.MemberServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +23,11 @@ namespace projekUas_Atun.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            var banyakdata = new BlogDashboard();
+            var banyakdata =  _serv.TampilSemuaData();
 
-            banyakdata.memberr = _context.Tb_Member.ToList();
             return View(banyakdata);
         }
+
         public IActionResult CreateMember()
         {
             return View();

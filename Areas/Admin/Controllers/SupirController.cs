@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using projekUas_Atun.Models;
-using projekUas_Atun.Views.Services.SupirServices;
+using projekUas_Atun.Services.SupirServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +23,7 @@ namespace projekUas_Atun.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            var semuaSupir = new SupirDashboard();
-            semuaSupir.supirr = _context.Tb_Supir.ToList();
+            var semuaSupir = _serv.TampilSemuaData();
             return View(semuaSupir);
         }
         public IActionResult CreateSupir()

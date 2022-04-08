@@ -29,13 +29,6 @@
                                 <td>
                                     @item.LamaPeminjaman
                                 </td>
-
-                                <td>
-                                    <a asp-controller="Paket" asp-action="Ubah" asp-route-id="@item.Id_Paket">Edit</a>
-                                    <a asp-action="Details" asp-route-id="@item.Id_Paket">Details</a>
-                                    <a asp-action="Hapus" asp-route-id="@item.Id_Paket" title="Keluar" style="color:red"
-                                       onclick="if (!confirm('Yakin Akan Menghapus Data Ini ? ')) { return false;}">Delete</a>
-                                </td>
                             </tr>
 
                         }

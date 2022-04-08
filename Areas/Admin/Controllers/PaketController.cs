@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using projekUas_Atun.Models;
-using projekUas_Atun.Views.Services.PaketService;
+using projekUas_Atun.Services.PaketServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,17 +14,16 @@ namespace projekUas_Atun.Areas.Admin.Controllers
     public class PaketController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly IPaketService _serv;
+        private readonly IPaketServices _serv;
 
-        public PaketController(AppDbContext context, IPaketService s)
+        public PaketController(AppDbContext context, IPaketServices s)
         {
             _context = context;
             _serv = s;
         }
         public IActionResult Index()
         {
-            var semuaPaket = new PaketDashboard();
-            semuaPaket.pakett = _context.Tb_paket.ToList();
+            var semuaPaket = _serv.TampilSemuaData();
             return View(semuaPaket);
         }
         public IActionResult CreatePaket()

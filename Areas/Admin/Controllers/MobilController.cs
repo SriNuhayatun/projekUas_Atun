@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using projekUas_Atun.Models;
-using projekUas_Atun.Views.Services.MobilServices;
+using projekUas_Atun.Services.MobilServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +24,7 @@ namespace projekUas_Atun.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            var semuaMobil = new MobilDashboard();
-            semuaMobil.mobill = _context.Tb_Mobil.ToList();
+            var semuaMobil = _serv.TampilSemuaData();
             return View(semuaMobil);
         }
         public IActionResult CreateMobil()

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using projekUas_Atun.Models;
-using projekUas_Atun.Views.Services.MemberServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;

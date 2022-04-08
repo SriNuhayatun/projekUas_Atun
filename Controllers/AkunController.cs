@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using projekUas_Atun.Helper;
 using projekUas_Atun.Models;
-using projekUas_Atun.Views.Services;
+using projekUas_Atun.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +52,7 @@ namespace projekUas_Atun.Controllers
                 _context.Tb_User.Add(parameter);
                 _context.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction(controllerName:"Home", actionName:"Index");
             }
             return View(parameter);
         }
@@ -107,7 +107,7 @@ namespace projekUas_Atun.Controllers
                     var daftar = new List<Claim>
                     {
                         new Claim("Username",cariusername.Username),
-                        new Claim("Role",cariusername.Roles.Id)
+                        new Claim("Role",cariusername.Roles.Username)
                     };
                     await HttpContext.SignInAsync(
                         new ClaimsPrincipal(

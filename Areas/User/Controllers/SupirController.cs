@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using projekUas_Atun.Models;
-using projekUas_Atun.Views.Services.SupirServices;
+using projekUas_Atun.Services.SupirServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;

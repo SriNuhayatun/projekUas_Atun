@@ -25,11 +25,11 @@ namespace projekUas_Atun.Models
     }
     public class PinjamDashboard
     {
-        public List<Peminjaman> pinjamm { get; set; }
+        public List<Db_Peminjaman> pinjamm { get; set; }
   
         public PinjamDashboard()
         {
-            pinjamm = new List<Peminjaman>();
+            pinjamm = new List<Db_Peminjaman>();
         }
 
     }

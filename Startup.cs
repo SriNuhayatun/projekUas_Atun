@@ -6,12 +6,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using projekUas_Atun.Models;
-using projekUas_Atun.Views.Repository;
-using projekUas_Atun.Views.Services;
-using projekUas_Atun.Views.Services.MemberServices;
-using projekUas_Atun.Views.Services.MobilServices;
-using projekUas_Atun.Views.Services.PaketService;
-using projekUas_Atun.Views.Services.SupirServices;
+using projekUas_Atun.Repository.MemberRepository;
+using projekUas_Atun.Repository.MobilRepository;
+using projekUas_Atun.Repository.PaketRepository;
+using projekUas_Atun.Repository.PeminjamanRepository;
+using projekUas_Atun.Repository.SupirRepository;
+using projekUas_Atun.Services;
+using projekUas_Atun.Services.MemberServices;
+using projekUas_Atun.Services.MobilServices;
+using projekUas_Atun.Services.PaketServices;
+using projekUas_Atun.Services.PeminjamanServices;
+using projekUas_Atun.Services.SupirServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,23 +49,24 @@ namespace projekUas_Atun
             services.AddTransient<EmailService>();
             services.Configure<Email>(Configuration.GetSection("AturEmail"));
 
-            services.AddControllersWithViews();
-
-            services.AddScoped<IMemberRepository, MemberRepository>();
+            services.AddScoped<IMemberRepository,MemberRepository>();
             services.AddScoped<IMemberServices, MemberServices>();
-            services.AddTransient<FileService>();
+            services.AddTransient<FileServices>();
+
+            services.AddControllersWithViews();
 
             services.AddScoped<IMobilRepository, MobilRepository>();
             services.AddScoped<IMobilServices, MobilServices>();
-            services.AddTransient<FileServiceMobil>();
 
             services.AddScoped<IPaketRepository, PaketRepository>();
-            services.AddScoped<IPaketService, PaketService>();
+            services.AddScoped<IPaketServices, PaketServices>();
 
             services.AddScoped<ISupirRepository, SupirRepository>();
-            services.AddScoped<ISupirServices, SupirSevices>();
+            services.AddScoped<ISupirServices, SupirServices>();
 
-           
+            services.AddScoped<IPeminjamanRepository, PeminjamanRepository>();
+            services.AddScoped<IPeminjamanServices, PeminjamanServices>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
