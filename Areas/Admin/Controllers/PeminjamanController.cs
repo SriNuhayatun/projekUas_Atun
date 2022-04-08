@@ -44,7 +44,9 @@ namespace projekUas_Atun.Areas.Admin.Controllers
                     Image = ambilData.Image,
                     NamaMobil = dj.NamaMobil,
                     NamaPaket=dj.NamaPaket,
-                    NamaSupir=dj.NamaSupir
+                    NamaSupir=dj.NamaSupir,
+                    Tgl_Pinjam=dj.Tgl_Pinjam,
+                    Tgl_Kembali=dj.Tgl_Kembali
                 };
 
                 string[] Id = _context.Tb_Peminjaman.Select(x => x.Id_Peminjaman).ToArray();
@@ -71,6 +73,49 @@ namespace projekUas_Atun.Areas.Admin.Controllers
 
 
             return View();
+        }
+        public async Task<IActionResult> Hapus(string id)
+        {
+            var cari = _context.Tb_Peminjaman.Where(x => x.Id_Peminjaman == id).FirstOrDefault();
+            if (cari == null)
+            {
+                return NotFound();
+            }
+            _context.Tb_Peminjaman.Remove(cari);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Ubah(string id)
+        {
+
+            var cari = await _serv.TampilPinjamById(id);
+
+            if (cari == null)
+            {
+                return NotFound();
+            }
+
+            return View(cari);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Ubah(Db_Peminjaman data)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _serv.UpdatePinjam(data);
+                }
+                catch
+                {
+                    return NotFound();
+                }
+
+                return RedirectToAction("Index", "Peminjaman");
+            }
+
+            return View(data);
         }
     }
 }

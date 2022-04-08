@@ -26,6 +26,24 @@ namespace projekUas_Atun.Repository.PeminjamanRepository
             var data = await _pinjamDB.Tb_Peminjaman.ToListAsync();
             return data;
         }
+        public async Task<bool> HapusPinjamAsync(Db_Peminjaman datanya)
+        {
+            _pinjamDB.Tb_Peminjaman.Remove(datanya);
+            await _pinjamDB.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<Db_Peminjaman> TampilPinjamByIDAsync(string id)
+        {
+            return await _pinjamDB.Tb_Peminjaman.FirstOrDefaultAsync(x => x.Id_Peminjaman == id);
+        }
+
+        public async Task<bool> UpdatePinjamAsync(Db_Peminjaman datanya)
+        {
+            _pinjamDB.Tb_Peminjaman.Update(datanya);
+            await _pinjamDB.SaveChangesAsync();
+            return true;
+        }
 
 
     }

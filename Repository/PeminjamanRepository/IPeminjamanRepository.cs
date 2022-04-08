@@ -10,6 +10,12 @@ namespace projekUas_Atun.Repository.PeminjamanRepository
     {
         Task<bool> BuatPinjamAsync(Db_Peminjaman datanya);
         Task<List<Db_Peminjaman>> TampilSemuaPeminjamanAsync();
-        
+        Task<bool> HapusPinjamAsync(Db_Peminjaman datanya);
+        Task<Db_Peminjaman> TampilPinjamByIDAsync(string id);
+        Task<bool> UpdatePinjamAsync(Db_Peminjaman datanya);
+
+
+
+
     }
 }

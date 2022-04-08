@@ -59,10 +59,10 @@
                                 </td>
 
                                 <td>
-                                    <a asp-action="Ubah" asp-route-id="@item.Id_mobil">Edit</a>
-                                    <a asp-action="Details" asp-route-id="@item.Id_mobil">Details</a>
+                                    <a asp-action="Ubah" asp-route-id="@item.Id_mobil"><i class="mdi mdi-pencil-box menu-icon" style="color:dodgerblue"></i></a>
+                                    <a asp-action="Details" asp-route-id="@item.Id_mobil"><i class="mdi mdi-eye menu-icon" style="color:dodgerblue"></i></a>
                                     <a asp-action="Hapus" asp-route-id="@item.Id_mobil" title="Keluar" style="color:red"
-                                       onclick="if (!confirm('Yakin Akan Menghapus Data Ini ? ')) { return false;}">Delete</a>
+                                       onclick="if (!confirm('Yakin Akan Menghapus Data Ini ? ')) { return false;}"><i class="mdi mdi-delete menu-icon" style="color:dodgerblue"></i></a>
                                 </td>
                             </tr>
 
