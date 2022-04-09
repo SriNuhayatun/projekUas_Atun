@@ -17,11 +17,29 @@ namespace projekUas_Atun.Controllers.Api
     [Route("api/[controller]")]
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
         private readonly IMemberServices _service;
+
+        //public HomeController(IPaketServices s)
+        //{
+        //    _service = s;
+        //}
+        //[Route("Paket")]
+        //public IActionResult TampilSemuaPaketAsync()
+        //{
+        //    var pakets = _service.TampilSemuaData();
+        //    var respon = Respon("SUKSES", 200, "Berhasil Ambil Semua Data", pakets);
+        //    return Ok(respon);
+        //}
+        //private object Respon(string stat, int code, string pesan, object datanya)
+        //{
+        //    return new
+        //    {
+        //        status = stat,
+        //        respon_code = code,
+        //        message = pesan,
+        //        data = datanya
+        //    };
+        //}
         private readonly IMobilServices _serv;
         private readonly IPaketServices _servi;
         private readonly ISupirServices _servic;
@@ -38,7 +56,7 @@ namespace projekUas_Atun.Controllers.Api
         private Mobil _tbMobil;
         private Paket _tbPaket;
         private Supir _tbsupir;
-     
+
 
         // tampungan string
         private string SMember = "Member";
@@ -48,9 +66,13 @@ namespace projekUas_Atun.Controllers.Api
 
 
 
-        public HomeController(IMemberServices  s)
+        public HomeController(IMemberServices s, IMobilServices ss, IPaketServices sss, ISupirServices ssss)
         {
             _service = s;
+            _serv = ss;
+            _servi = sss;
+            _servic = ssss;
+
         }
 
         [Route("Member")]
@@ -64,7 +86,7 @@ namespace projekUas_Atun.Controllers.Api
 
         [Route("Member")]
         [HttpPost]
-        public IActionResult TambahMember( Member parameternya, IFormFile Image)
+        public IActionResult TambahMember(Member parameternya, IFormFile Image)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +99,7 @@ namespace projekUas_Atun.Controllers.Api
             return Ok(_respon);
         }
 
-        [Route("Member")]
+        [Route("Member/{id}")]
         [HttpPut]
         public IActionResult UbahMember(Member parameternya, IFormFile Image)
         {
