@@ -39,12 +39,12 @@ namespace projekUas_Atun.Areas.Admin.Controllers
             foreach (var item in Id)
             {
                 temp = Int32.Parse(item.Split("-")[1]);
-                Parameter.Id_Paket = "M00-" + (temp + 1);
+                Parameter.Id_Paket = "K00-" + (temp + 1);
             }
 
             if (Parameter.Id_Paket == null)
             {
-                Parameter.Id_Paket = "M00-1";
+                Parameter.Id_Paket = "K00-1";
             }
 
             if (ModelState.IsValid)

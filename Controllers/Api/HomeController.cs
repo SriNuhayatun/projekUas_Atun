@@ -84,46 +84,6 @@ namespace projekUas_Atun.Controllers.Api
             return Ok(_respon);
         }
 
-        [Route("Member")]
-        [HttpPost]
-        public IActionResult TambahMember(Member parameternya, IFormFile Image)
-        {
-            if (ModelState.IsValid)
-            {
-                _service.BuatMember(parameternya, Image);
-
-                _respon = _bantu.BuatResponAPI(_bantu.CodeOk, _bantu.PesanTambahSukses(SMember), parameternya);
-                return Ok(_respon);
-            }
-            _respon = _bantu.BuatResponAPI(_bantu.CodeBadRequest, _bantu.PesanInputanSalah(SMember), null);
-            return Ok(_respon);
-        }
-
-        [Route("Member/{id}")]
-        [HttpPut]
-        public IActionResult UbahMember(Member parameternya, IFormFile Image)
-        {
-            if (ModelState.IsValid)
-            {
-                _TbMember = _service.TampilMemberById(parameternya.Id_Member).Result;
-                if (_TbMember != null)
-                {
-                    _service.UpdateMemberAsync(parameternya, Image);
-
-                    _TbMember = _service.TampilMemberById(parameternya.Id_Member).Result;
-
-                    _respon = _bantu.BuatResponAPI(_bantu.CodeOk, _bantu.PesanUbahSukses(SMember), _TbMember);
-                    return Ok(_respon);
-                }
-
-                _respon = _bantu.BuatResponAPI(_bantu.CodeInternalServerError, _bantu.PesanTidakDitemukan(SMember), null);
-                return Ok(_respon);
-            }
-
-            _respon = _bantu.BuatResponAPI(_bantu.CodeBadRequest, _bantu.PesanInputanSalah(SMember), null);
-            return Ok(_respon);
-        }
-
         [Route("Member/{idnya}")]
         [HttpDelete]
         public IActionResult HapusMember(string idnya)
