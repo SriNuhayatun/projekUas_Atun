@@ -9,7 +9,7 @@ using projekUas_Atun.Models;
 namespace projekUas_Atun.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220406085625_rental")]
+    [Migration("20220409133245_rental")]
     partial class rental
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,57 +18,6 @@ namespace projekUas_Atun.Migrations
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.13");
-
-            modelBuilder.Entity("projekUas_Atun.Models.Db_DetailPeminjaman", b =>
-                {
-                    b.Property<string>("Id_DetailPeminjaman")
-                        .HasColumnType("varchar(767)");
-
-                    b.Property<string>("Id_Member")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Id_Peminjaman")
-                        .HasColumnType("varchar(767)");
-
-                    b.Property<string>("Id_Supir")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Id_mobil")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("text");
-
-                    b.Property<string>("NamaMember")
-                        .HasColumnType("text");
-
-                    b.Property<string>("NamaMobil")
-                        .HasColumnType("text");
-
-                    b.Property<string>("NamaPaket")
-                        .HasColumnType("text");
-
-                    b.Property<string>("NamaSupir")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("Tgl_Kembali")
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime>("Tgl_Pinjam")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("denda")
-                        .HasColumnType("text");
-
-                    b.Property<string>("total")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id_DetailPeminjaman");
-
-                    b.HasIndex("Id_Peminjaman");
-
-                    b.ToTable("Tb_DetailPeminjaman");
-                });
 
             modelBuilder.Entity("projekUas_Atun.Models.Db_Peminjaman", b =>
                 {
@@ -234,15 +183,6 @@ namespace projekUas_Atun.Migrations
                     b.HasIndex("RolesId");
 
                     b.ToTable("Tb_User");
-                });
-
-            modelBuilder.Entity("projekUas_Atun.Models.Db_DetailPeminjaman", b =>
-                {
-                    b.HasOne("projekUas_Atun.Models.Db_Peminjaman", "IdPeminjaman")
-                        .WithMany()
-                        .HasForeignKey("Id_Peminjaman");
-
-                    b.Navigation("IdPeminjaman");
                 });
 
             modelBuilder.Entity("projekUas_Atun.Models.Db_Peminjaman", b =>

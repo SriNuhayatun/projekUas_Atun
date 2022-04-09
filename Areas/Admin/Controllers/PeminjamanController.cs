@@ -117,5 +117,6 @@ namespace projekUas_Atun.Areas.Admin.Controllers
 
             return View(data);
         }
+       
     }
 }

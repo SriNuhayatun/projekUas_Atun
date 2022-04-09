@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using projekUas_Atun.Models;
+using projekUas_Atun.Services.PeminjamanServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,41 +14,56 @@ namespace projekUas_Atun.Areas.User.Controllers
     public class PeminjamanController : Controller
     {
         private readonly AppDbContext _context;
-        public PeminjamanController(AppDbContext c)
+        private readonly IPeminjamanServices _serv;
+        public PeminjamanController(AppDbContext c, IPeminjamanServices s)
         {
             _context = c;
+            _serv = s;
         }
         public IActionResult Index()
         {
-            return View();
+            var semuaPaket = _serv.TampilSemuaData();
+            return View(semuaPaket);
         }
         public IActionResult CreatePeminjaman()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult CreatePeminjaman(string id, Db_Peminjaman dj)
+        public async Task<IActionResult> CreatePeminjaman(string id, Peminjaman dj)
         {
             if (ModelState.IsValid)
             {
                 var ambilData = _context.Tb_Member.Where(x => x.Id_Member == id).FirstOrDefault();
 
-                var peminjaman = new Peminjaman()
+                var peminjaman = new Db_Peminjaman()
                 {
                     Id_Member = ambilData.Id_Member,
                     NamaMember = ambilData.NamaMember,
-                    Image = ambilData.Image
+                    Image = ambilData.Image,
+                    NamaMobil = dj.NamaMobil,
+                    NamaPaket = dj.NamaPaket,
+                    NamaSupir = dj.NamaSupir,
+                    Tgl_Pinjam = dj.Tgl_Pinjam,
+                    Tgl_Kembali = dj.Tgl_Kembali
                 };
 
-                peminjaman.Id_Peminjaman = "PJ-001";
+                string[] Id = _context.Tb_Peminjaman.Select(x => x.Id_Peminjaman).ToArray();
 
-                dj.Id_Peminjaman = peminjaman.Id_Peminjaman;
-                dj.Id_Member = peminjaman.Id_Member;
-                dj.NamaMember = peminjaman.NamaMember;
-                dj.Image = peminjaman.Image;
+                int temp;
+                foreach (var item in Id)
+                {
+                    temp = Int32.Parse(item.Split("-")[1]);
+                    peminjaman.Id_Peminjaman = "P00-" + (temp + 1);
+                }
 
-                _context.Add(dj);
-                _context.SaveChanges();
+                if (peminjaman.Id_Peminjaman == null)
+                {
+                    peminjaman.Id_Peminjaman = "P00-1";
+                }
+                await _serv.BuatPeminjaman(id, peminjaman);
+
+                return RedirectToAction("Index");
             }
 
 

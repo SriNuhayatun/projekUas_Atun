@@ -35,25 +35,25 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                    <a class="nav-link" asp-area="User" asp-controller="Home" asp-action="Index">
                         <i class="mdi mdi-home menu-icon"></i>
                         <span class="menu-title">Home</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="User" asp-controller="Member" asp-action="Index">
+                    <a class="nav-link" href="/User/Member">
                         <i class="mdi mdi-account-multiple menu-icon"> </i>
                         <span class="menu-title">Member</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="User" asp-controller="Mobil" asp-action="Index">
+                    <a class="nav-link" href="/User/Mobil">
                         <i class="mdi mdi-car-wash menu-icon"> </i>
                         <span class="menu-title">Mobil</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="User" asp-controller="Supir" asp-action="Index">
+                    <a class="nav-link" href="/User/Mobil">
                         <i class="mdi mdi-account menu-icon"></i>
                         <span class="menu-title">Supir</span>
                     </a>
@@ -65,7 +65,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="User" asp-controller="Transaksi" asp-action="Index">
+                    <a class="nav-link" asp-area="User" asp-controller="Peminjaman" asp-action="Index">
                         <i class="mdi mdi-clipboard-text menu-icon"> </i>
                         <span class="menu-title">Transaksi</span>
                     </a>
@@ -112,14 +112,22 @@
                         <li class="nav-item nav-profile dropdown border-0">
                             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
                                 <img class="nav-profile-img mr-2" alt="" src="assets/images/faces/adminnn.jpg" />
-                                <span class="profile-name">@User.GetUsername()</span>
+                                <span class="profile-name">
+                                    @{
+                                        string cek1 = User.GetUsername();
+                                        if (cek1 != "")
+                                        {
+                                            @User.GetUsername();
+                                        }
+                                    }      
+                                </span>
                             </a>
                             <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
                                 @{
                                     string cek = User.GetUsername();
                                     if (cek != "")
                                     {
-                                        <a class="dropdown-item" asp-controller="Akun" asp-action="Logout">
+                                        <a class="dropdown-item" asp-area="" asp-controller="Akun" asp-action="Logout">
                                             Sign Out
                                         </a>
 

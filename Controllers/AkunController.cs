@@ -52,7 +52,7 @@ namespace projekUas_Atun.Controllers
                 _context.Tb_User.Add(parameter);
                 _context.SaveChanges();
 
-                return RedirectToAction(controllerName:"Home", actionName:"Index");
+                return RedirectToAction("Masuk");
             }
             return View(parameter);
         }

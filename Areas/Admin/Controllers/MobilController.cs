@@ -80,23 +80,24 @@ namespace projekUas_Atun.Areas.Admin.Controllers
             return View(cari);
         }
         [HttpPost]
-        public async Task<IActionResult> Ubah(Mobil data)
+        public async Task<IActionResult> Ubah(Mobil data,IFormFile Image)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    await _serv.UpdateMobil(data);
-                }
-                catch
-                {
-                    return NotFound();
-                }
+      
+                    if (ModelState.IsValid)
+                    {
+                        var cari =await _serv.TampilMobilById(data.Id_mobil);
+                        if (cari != null)
+                        {
+                            await _serv.UpdateMobil(data, Image);
+                            return Redirect("/Admin/Mobil/Index/" + data.Id_mobil);
 
-                return RedirectToAction("Index", "Mobil");
-            }
-
-            return View(data);
+                        }
+                        return NotFound(0);
+                    }
+                }
+                return View(data);
         }
         public IActionResult Details(string id)
         {

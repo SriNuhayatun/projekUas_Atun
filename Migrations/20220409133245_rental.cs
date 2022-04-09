@@ -123,41 +123,6 @@ namespace projekUas_Atun.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Tb_DetailPeminjaman",
-                columns: table => new
-                {
-                    Id_DetailPeminjaman = table.Column<string>(type: "varchar(767)", nullable: false),
-                    Id_Peminjaman = table.Column<string>(type: "varchar(767)", nullable: true),
-                    Id_mobil = table.Column<string>(type: "text", nullable: true),
-                    Id_Supir = table.Column<string>(type: "text", nullable: true),
-                    Id_Member = table.Column<string>(type: "text", nullable: true),
-                    NamaMember = table.Column<string>(type: "text", nullable: true),
-                    Image = table.Column<string>(type: "text", nullable: true),
-                    NamaPaket = table.Column<string>(type: "text", nullable: true),
-                    NamaMobil = table.Column<string>(type: "text", nullable: true),
-                    NamaSupir = table.Column<string>(type: "text", nullable: true),
-                    Tgl_Pinjam = table.Column<DateTime>(type: "datetime", nullable: false),
-                    Tgl_Kembali = table.Column<DateTime>(type: "datetime", nullable: false),
-                    denda = table.Column<string>(type: "text", nullable: true),
-                    total = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tb_DetailPeminjaman", x => x.Id_DetailPeminjaman);
-                    table.ForeignKey(
-                        name: "FK_Tb_DetailPeminjaman_Tb_Peminjaman_Id_Peminjaman",
-                        column: x => x.Id_Peminjaman,
-                        principalTable: "Tb_Peminjaman",
-                        principalColumn: "Id_Peminjaman",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tb_DetailPeminjaman_Id_Peminjaman",
-                table: "Tb_DetailPeminjaman",
-                column: "Id_Peminjaman");
-
             migrationBuilder.CreateIndex(
                 name: "IX_Tb_Peminjaman_Id_Member",
                 table: "Tb_Peminjaman",
@@ -172,13 +137,13 @@ namespace projekUas_Atun.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tb_DetailPeminjaman");
-
-            migrationBuilder.DropTable(
                 name: "Tb_Mobil");
 
             migrationBuilder.DropTable(
                 name: "Tb_paket");
+
+            migrationBuilder.DropTable(
+                name: "Tb_Peminjaman");
 
             migrationBuilder.DropTable(
                 name: "Tb_Supir");
@@ -187,13 +152,10 @@ namespace projekUas_Atun.Migrations
                 name: "Tb_User");
 
             migrationBuilder.DropTable(
-                name: "Tb_Peminjaman");
+                name: "Tb_Member");
 
             migrationBuilder.DropTable(
                 name: "Tb_Roles");
-
-            migrationBuilder.DropTable(
-                name: "Tb_Member");
         }
     }
 }

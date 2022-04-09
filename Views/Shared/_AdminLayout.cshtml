@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="Admin" asp-controller="Member" asp-action="Index" >
+                    <a class="nav-link" asp-area="Admin" asp-controller="Member" asp-action="Index">
                         <i class="mdi mdi-account-multiple menu-icon"> </i>
                         <span class="menu-title">Member</span>
                     </a>
@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="Admin"  asp-controller="Supir" asp-action="Index">
+                    <a class="nav-link" asp-area="Admin" asp-controller="Supir" asp-action="Index">
                         <i class="mdi mdi-account menu-icon"></i>
                         <span class="menu-title">Supir</span>
                     </a>
@@ -69,6 +69,7 @@
                         <i class="mdi mdi-clipboard-text menu-icon"> </i>
                         <span class="menu-title">Transaksi</span>
                     </a>
+                    
                 </li>
             </ul>
         </nav>
@@ -119,7 +120,7 @@
                                     string cek = User.GetUsername();
                                     if (cek != "")
                                     {
-                                        <a class="dropdown-item" asp-controller="Akun" asp-action="Logout">
+                                        <a class="dropdown-item" asp-area="" asp-controller="Akun" asp-action="Logout">
                                             Sign Out
                                         </a>
 

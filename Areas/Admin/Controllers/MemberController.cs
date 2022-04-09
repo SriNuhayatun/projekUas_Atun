@@ -72,22 +72,22 @@ namespace projekUas_Atun.Areas.Admin.Controllers
             return View(cari);
         }
         [HttpPost]
-        public async Task<IActionResult> Ubah(Member data)
+        public async Task<IActionResult> Ubah(Member data, IFormFile Image)
         {
             if (ModelState.IsValid)
             {
-                try
+                if (ModelState.IsValid)
                 {
-                    await _serv.UpdateMemberAsync(data);
-                }
-                catch
-                {
-                    return NotFound();
-                }
+                    var cari = _serv.TampilMemberById(data.Id_Member);
+                    if (cari != null)
+                    {
+                        await _serv.UpdateMemberAsync(data, Image);
+                        return Redirect("/Admin/Member/Index/" + data.Id_Member);
 
-                return RedirectToAction("Index", "Member");
+                    }
+                    return NotFound(0);
+                }
             }
-
             return View(data);
         }
         public IActionResult Details(string id)

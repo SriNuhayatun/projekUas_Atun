@@ -51,6 +51,7 @@ namespace projekUas_Atun
 
             services.AddScoped<IMemberRepository,MemberRepository>();
             services.AddScoped<IMemberServices, MemberServices>();
+
             services.AddTransient<FileServices>();
 
             services.AddControllersWithViews();
@@ -103,7 +104,7 @@ namespace projekUas_Atun
                     pattern: "User/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Akun}/{action=Masuk}/{id?}");
             });
         }
     }

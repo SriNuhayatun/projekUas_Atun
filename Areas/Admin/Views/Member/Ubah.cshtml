@@ -8,6 +8,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Member" asp-action="Index">Data Member</a></li>
             <li class="breadcrumb-item active" aria-current="page"> Edit Member</li>
         </ol>
     </nav>
@@ -15,7 +16,7 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <form asp-controller="Member" asp-action="Ubah" class="forms-sample">
+            <form asp-controller="Member" asp-action="Ubah" class="forms-sample" enctype="multipart/form-data">
                 <input type="hidden" asp-for="Id_Member" />
                 <label>Nama Member</label>
                 <input asp-for="NamaMember" type="text" class="form-control" id="exampleInputEmail3" />
@@ -26,8 +27,9 @@
                 </select>
                 <label>Alamat</label>
                 <input asp-for="Alamat" class="form-control" id="exampleInputMobile" />
-                <label>Foto</label>
-                <input asp-for="Image" class="form-control file-upload-info">
+                <label>Foto Diri</label>
+                <img src="@Model.Image" alt="Image" width="100" height="120" />
+                <input name="Image" type="file" accept=".jpg,.png" class="form-control file-upload-info">
                 <input type="submit" class="btn btn-primary mr-2" value="Simpan" />
             </form>
         </div>

@@ -13,6 +13,6 @@ namespace projekUas_Atun.Services.MemberServices
         Task<Member> TampilMemberById(string id);
         Task<bool> BuatMember(Member datanya, IFormFile Fotonya);
         Task<bool> HapusMember(string id);
-        Task<bool> UpdateMemberAsync(Member datanya);
+        Task<bool> UpdateMemberAsync(Member datanya, IFormFile Fotonya);
     }
 }

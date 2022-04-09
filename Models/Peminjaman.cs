@@ -26,7 +26,6 @@ namespace projekUas_Atun.Models
     public class PinjamDashboard
     {
         public List<Db_Peminjaman> pinjamm { get; set; }
-  
         public PinjamDashboard()
         {
             pinjamm = new List<Db_Peminjaman>();

@@ -10,7 +10,6 @@
             <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
             <li class="breadcrumb-item"><a asp-controller="Peminjaman" asp-action="Index">Data Transaksi</a></li>
             <li class="breadcrumb-item active" aria-current="page">Create Transaksi</li>
-            @*<a href="D:\pelatihan c# asp\projek uas sri nuhayatun\projekUas_Atun\Areas\Admin\Views\Peminjaman\CreatePeminjaman.cshtml">D:\pelatihan c# asp\projek uas sri nuhayatun\projekUas_Atun\Areas\Admin\Views\Peminjaman\CreatePeminjaman.cshtml</a>>*@
         </ol>
     </nav>
 </div>
@@ -19,7 +18,6 @@
         <div class="card">
             <div class="card-body">
                 <form class="forms-sample" asp-controller="Peminjaman" asp-action="CreatePeminjaman">
-                    @*<a href="D:\pelatihan c# asp\projek uas sri nuhayatun\projekUas_Atun\Areas\Admin\Views\Peminjaman\CreatePeminjaman.cshtml">D:\pelatihan c# asp\projek uas sri nuhayatun\projekUas_Atun\Areas\Admin\Views\Peminjaman\CreatePeminjaman.cshtml</a>*@
                     <div class="form-group">
                         <label asp-for="NamaPaket">Nama Paket</label>
                         <input asp-for="NamaPaket" class="form-control" id="exampleInputEmail1" />
@@ -39,7 +37,7 @@
                     <div class="form-group">
                         <label asp-for="Tgl_Kembali">Tanggal Pengembalian</label>
                         <input asp-for="Tgl_Kembali" class="form-control" id="exampleInputEmail1" />
-                    
+
                     </div>
                     <input type="submit" class="btn btn-primary mr-2" value="Submit" />
                     <button type="reset" class="btn btn-light">Cancel</button>

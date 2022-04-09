@@ -13,6 +13,6 @@ namespace projekUas_Atun.Services.MobilServices
         Task<Mobil> TampilMobilById(string id);
         Task<bool> BuatMobil(Mobil datanya, IFormFile Fotonya);
         Task<bool> HapusMobil(string id);
-        Task<bool> UpdateMobil(Mobil datanya);
+        Task<bool> UpdateMobil(Mobil datanya, IFormFile Fotonya);
     }
 }

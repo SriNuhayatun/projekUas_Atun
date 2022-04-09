@@ -13,7 +13,7 @@
 </div>
 <a class="nav-link" asp-action="CreateMobil">
     <i class="mdi mdi-plus menu-icon"> </i>
-    <span class="menu-title">Buat Member Baru</span>
+    <span class="menu-title">Buat Data Baru</span>
 </a>
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
@@ -59,10 +59,10 @@
                                 </td>
 
                                 <td>
-                                    <a asp-action="Ubah" asp-route-id="@item.Id_mobil"><i class="mdi mdi-pencil-box menu-icon" style="color:dodgerblue"></i></a>
-                                    <a asp-action="Details" asp-route-id="@item.Id_mobil"><i class="mdi mdi-eye menu-icon" style="color:dodgerblue"></i></a>
+                                    <a asp-action="Ubah" asp-route-id="@item.Id_mobil"><i class="mdi mdi-pencil menu-icon icon-md text-success" style="color:dodgerblue"></i></a>
+                                    <a asp-action="Details" asp-route-id="@item.Id_mobil"><i class="mdi mdi-eye menu-icon icon-md text-success" style="color:dodgerblue"></i></a>
                                     <a asp-action="Hapus" asp-route-id="@item.Id_mobil" title="Keluar" style="color:red"
-                                       onclick="if (!confirm('Yakin Akan Menghapus Data Ini ? ')) { return false;}"><i class="mdi mdi-delete menu-icon" style="color:dodgerblue"></i></a>
+                                       onclick="if (!confirm('Yakin Akan Menghapus Data Ini ? ')) { return false;}"><i class="mdi mdi-delete menu-icon icon-md text-success" style="color:blue"></i></a>
                                 </td>
                             </tr>
 

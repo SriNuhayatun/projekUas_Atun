@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\User\Views\Home\Partial\" />
     <Folder Include="wwwroot\FileFoto\" />
   </ItemGroup>
 

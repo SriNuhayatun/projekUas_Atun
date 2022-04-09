@@ -20,7 +20,7 @@ namespace projekUas_Atun.Models
         public virtual DbSet<Supir> Tb_Supir { get; set; }
         public virtual DbSet<Paket> Tb_paket { get; set; }
         public virtual DbSet<Db_Peminjaman> Tb_Peminjaman { get; set; }
-        public virtual DbSet<Db_DetailPeminjaman> Tb_DetailPeminjaman { get; set; }
+       
 
     }
 }

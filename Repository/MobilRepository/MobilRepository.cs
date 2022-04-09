@@ -16,6 +16,12 @@ namespace projekUas_Atun.Repository.MobilRepository
             _MobilDB = m;
         }
 
+        //public async Task<bool> BuatMobilAsync(Mobil datanya)
+        //{
+        //    _MobilDB.Tb_Mobil.Add(datanya);
+        //    await _MobilDB.SaveChangesAsync();
+        //    return true;
+        //}
         public async Task<bool> BuatMobilAsync(Mobil datanya)
         {
             _MobilDB.Tb_Mobil.Add(datanya);

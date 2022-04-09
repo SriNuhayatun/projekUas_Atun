@@ -45,9 +45,21 @@ namespace projekUas_Atun.Services.MemberServices
             return _memRepo.TampilSemuaMemberAsync().Result;
         }
 
-        public async Task<bool> UpdateMemberAsync(Member datanya)
+        public async Task<bool> UpdateMemberAsync(Member datanya, IFormFile Fotonya)
         {
-            return await _memRepo.UpdateMemberAsync(datanya);
+            var cari = _memRepo.TampilMemberByIDAsync(datanya.Id_Member).Result;
+            if (cari != null)
+            {
+                cari.NamaMember = datanya.NamaMember;
+                cari.JenisKelamin = datanya.JenisKelamin;
+                cari.Alamat = datanya.Alamat;
+               
+
+                if (Fotonya != null) cari.Image =await _file.SimpanFile(Fotonya);
+                else cari.Image = cari.Image;
+                return await _memRepo.UpdateMemberAsync(cari);
+            }
+            return false;
 
         }
     }
