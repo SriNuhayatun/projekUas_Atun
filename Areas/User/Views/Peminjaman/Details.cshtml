@@ -1,0 +1,26 @@
+﻿@model List<Peminjaman>
+@{
+    Layout = "_UserLayout";
+}
+<div class="page-header">
+    <h1 class="page-title">Details</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Details Peminjaman</li>
+        </ol>
+    </nav>
+</div>
+@foreach (var item in ViewBag.detail)
+{
+    <h3>ID Member   : @item.Id_Member</h3>
+    <h3>Nama Member : @item.NamaMember </h3>
+    <img src="@item.Image" width="100" height="120" />
+    <h3>Nama Mobil  : @item.NamaMobil</h3>
+    <h3>Nama Paket  : @item.NamaPaket</h3>
+    <h3>Nama Supir  : @item.NamaSupir</h3>
+    <h3>TGL Pinjam  : @item.Tgl_Pinjam</h3>
+    <h3>TGL Kembali : @item.Tgl_Kembali</h3>
+
+}
+

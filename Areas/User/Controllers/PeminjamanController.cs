@@ -69,5 +69,48 @@ namespace projekUas_Atun.Areas.User.Controllers
 
             return View();
         }
+        public async Task<IActionResult> Ubah(string id)
+        {
+
+            var cari = await _serv.TampilPinjamById(id);
+
+            if (cari == null)
+            {
+                return NotFound();
+            }
+
+            return View(cari);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Ubah(Db_Peminjaman data)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _serv.UpdatePinjam(data);
+                }
+                catch
+                {
+                    return NotFound();
+                }
+
+                return RedirectToAction("Index", "Peminjaman");
+            }
+
+            return View(data);
+        }
+        public IActionResult Details(string id)
+        {
+
+            var detail = new List<Peminjaman>();
+            var det = _context.Tb_Peminjaman.Where(x => x.Id_Peminjaman == id).ToList();
+            if (det == null)
+            {
+                return NotFound();
+            }
+            ViewBag.detail = det;
+            return View();
+        }
     }
 }

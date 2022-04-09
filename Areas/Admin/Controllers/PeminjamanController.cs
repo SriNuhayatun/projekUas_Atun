@@ -62,10 +62,6 @@ namespace projekUas_Atun.Areas.Admin.Controllers
                 {
                     peminjaman.Id_Peminjaman = "P00-1";
                 }
-
-                //_context.Add(peminjaman);
-                //_context.SaveChanges();
-                //return RedirectToAction("Index");
                  await _serv.BuatPeminjaman(id,peminjaman);
 
                 return RedirectToAction("Index");
@@ -117,6 +113,17 @@ namespace projekUas_Atun.Areas.Admin.Controllers
 
             return View(data);
         }
-       
+        public IActionResult Details(string id)
+        {
+
+            var detail = new List<Peminjaman>();
+            var det = _context.Tb_Peminjaman.Where(x => x.Id_Peminjaman== id).ToList();
+            if (det == null)
+            {
+                return NotFound();
+            }
+            ViewBag.detail = det;
+            return View();
+        }
     }
 }

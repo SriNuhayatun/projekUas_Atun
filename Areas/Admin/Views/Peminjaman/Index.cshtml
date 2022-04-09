@@ -26,6 +26,7 @@
                             <th>Nama Member</th>
                             <th>Tgl Pinjam</th>
                             <th>Tgl Kembali</th>
+                            <th>Aksi</th>
 
                         </tr>
                     </thead>
@@ -55,7 +56,7 @@
 
                                 <td>
                                     <a asp-action="Ubah" asp-route-id="@item.Id_Peminjaman"><i class="mdi mdi-pencil menu-icon icon-md text-success" style="color:dodgerblue"></i></a>
-                                    <a  asp-action="Details" asp-route-id="@item.Id_Peminjaman"><i class="mdi mdi-eye menu-icon icon-md text-success" style="color:dodgerblue"></i></a>
+                                    <a asp-action="Details" asp-route-id="@item.Id_Peminjaman"><i class="mdi mdi-eye menu-icon icon-md text-success" style="color:dodgerblue"></i></a>
                                     <a asp-action="Hapus" asp-route-id="@item.Id_Peminjaman" title="Keluar" style="color:red"
                                        onclick="if (!confirm('Yakin Akan Menghapus Data Ini ? ')) { return false;}"><i class="mdi mdi-delete menu-icon icon-md text-success" style="color:blue"></i></a>
                                 </td>
