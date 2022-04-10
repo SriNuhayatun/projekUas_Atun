@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="~/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
     <link rel="stylesheet" href="~/assets/css/style.css" />
     <link rel="shortcut icon" href="~/assets/images/favicon.png" />
+    @* dt *@
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 </head>
 <body>
     <div class="container-scroller">
@@ -69,7 +71,7 @@
                         <i class="mdi mdi-clipboard-text menu-icon"> </i>
                         <span class="menu-title">Transaksi</span>
                     </a>
-                    
+
                 </li>
             </ul>
         </nav>
@@ -131,7 +133,7 @@
                                             Login
                                         </a>
                                         <a class="dropdown-item" asp-controller="Akun" asp-action="Daftar">
-                                             Sign Up
+                                            Sign Up
                                         </a>
                                     }
 
@@ -182,6 +184,10 @@
     <script src="~/assets/js/dashboard.js"></script>
 
     <!-- End custom js for this page -->
-
+    @* dt *@
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
